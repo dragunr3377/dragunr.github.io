@@ -1,6 +1,174 @@
 🛍️ DRAGUN R
 
 <!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DRAGUN Official Advertisement</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #101827;
+  color: white;
+  text-align: center;
+}
+.video {
+  max-width: 850px;
+  min-height: 570px;
+  margin: 20px auto;
+  padding: 25px;
+  border-radius: 20px;
+  background: linear-gradient(135deg,#132a45,#087e8b);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.logo {
+  color: #ffdc46;
+  font-size: clamp(38px,8vw,65px);
+  font-weight: 900;
+  letter-spacing: 7px;
+  text-shadow: 3px 3px #111;
+}
+.tagline { font-size: 20px; }
+.scene {
+  font-size: 100px;
+  margin: 15px;
+  animation: float 2s infinite ease-in-out;
+}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+h1 { font-size: clamp(25px,5vw,40px); }
+#dialogue {
+  font-size: 21px;
+  line-height: 1.6;
+  max-width: 650px;
+  min-height: 95px;
+}
+button {
+  background: #ffdc46;
+  color: #111;
+  border: 0;
+  padding: 13px 24px;
+  margin: 7px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+}
+button:hover { background: white; }
+.controls { padding-bottom: 25px; }
+.small { color: #d8e5f0; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<div class="video">
+  <div class="logo">DRAGUN</div>
+  <div class="tagline">STYLE • QUALITY • PROTECTION</div>
+
+  <div class="scene" id="product">👜</div>
+  <h1 id="heading">Welcome to DRAGUN!</h1>
+  <p id="dialogue">
+    Namaskar dosto! DRAGUN lekar aaya hai
+    aapke liye style aur quality ka zabardast collection!
+  </p>
+  <p class="small" id="counter">Scene 1 / 4</p>
+</div>
+
+<div class="controls">
+  <button onclick="previous()">⬅ Pichla Scene</button>
+  <button onclick="speak()">🔊 Hindi Voice</button>
+  <button onclick="next()">Agla Scene ➡</button>
+  <button onclick="toggleAuto()" id="autoBtn">▶ Auto Play</button>
+</div>
+
+<script>
+const scenes = [
+  {
+    icon: "👜",
+    title: "Welcome to DRAGUN!",
+    text: "Namaskar dosto! DRAGUN lekar aaya hai aapke liye style aur quality ka zabardast collection!"
+  },
+  {
+    icon: "🎒",
+    title: "DRAGUN Stylish Bags",
+    text: "Chahe school ho, office ho ya travel, DRAGUN bags ke saath paaiye stylish look aur apna samaan rakhne ki suvidha!"
+  },
+  {
+    icon: "🧢",
+    title: "DRAGUN Fashion Caps",
+    text: "Apne style ko banaiye aur bhi khaas! DRAGUN caps ke saath paaiye ek smart aur trendy look!"
+  },
+  {
+    icon: "🌧️",
+    title: "DRAGUN Raincoats",
+    text: "Baarish ho ya kharab mausam, DRAGUN raincoat ke saath taiyar rahiye! DRAGUN — style, quality aur protection, sab ek saath!"
+  }
+];
+
+let index = 0;
+let timer = null;
+
+function showScene() {
+  const s = scenes[index];
+  document.getElementById("product").textContent = s.icon;
+  document.getElementById("heading").textContent = s.title;
+  document.getElementById("dialogue").textContent = s.text;
+  document.getElementById("counter").textContent =
+    `Scene ${index + 1} / ${scenes.length}`;
+}
+
+function next() {
+  index = (index + 1) % scenes.length;
+  showScene();
+}
+
+function previous() {
+  index = (index - 1 + scenes.length) % scenes.length;
+  showScene();
+}
+
+function speak() {
+  if (!("speechSynthesis" in window)) {
+    alert("Is browser mein voice support nahi hai.");
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(
+    scenes[index].text
+  );
+  utterance.lang = "hi-IN";
+  utterance.rate = 0.9;
+  utterance.pitch = 1.1;
+  speechSynthesis.speak(utterance);
+}
+
+function toggleAuto() {
+  if (timer) {
+    clearInterval(timer);
+    timer = null;
+    document.getElementById("autoBtn").textContent =
+      "▶ Auto Play";
+  } else {
+    timer = setInterval(next, 6000);
+    document.getElementById("autoBtn").textContent =
+      "⏸ Stop Auto Play";
+  }
+}
+
+showScene();
+</script>
+</body>
+</html>
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
