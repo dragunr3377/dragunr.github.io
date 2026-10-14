@@ -1,6 +1,269 @@
 🛍️ DRAGUN R
 
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragun Luxury Watch - Exclusive Offer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            background: #1e293b;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-width: 900px;
+            width: 100%;
+            overflow: hidden;
+            border: 1px solid #334155;
+        }
+
+        .product-image {
+            flex: 1;
+            min-width: 300px;
+            background: #0f172a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 40px;
+        }
+
+        /* Live Watch Graphic / Animation */
+        .watch-mockup {
+            width: 220px;
+            height: 220px;
+            border: 8px solid #cbd5e1;
+            border-radius: 50%;
+            position: relative;
+            background: #000;
+            box-shadow: inset 0 0 15px rgba(255,255,255,0.2), 0 5px 15px rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .watch-center {
+            width: 12px;
+            height: 12px;
+            background: #e2e8f0;
+            border-radius: 50%;
+            position: absolute;
+            z-index: 10;
+        }
+
+        .hand {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom;
+            border-radius: 4px;
+        }
+
+        .hour-hand {
+            width: 4px;
+            height: 55px;
+            background: #e2e8f0;
+            transform: translateX(-50%) rotate(0deg);
+        }
+
+        .minute-hand {
+            width: 3px;
+            height: 75px;
+            background: #94a3b8;
+            transform: translateX(-50%) rotate(0deg);
+        }
+
+        .second-hand {
+            width: 2px;
+            height: 85px;
+            background: #ef4444;
+            transform: translateX(-50%) rotate(0deg);
+        }
+
+        .product-details {
+            flex: 1;
+            min-width: 300px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .brand-title {
+            font-size: 14px;
+            letter-spacing: 2px;
+            color: #38bdf8;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .product-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .price-tag {
+            font-size: 32px;
+            font-weight: 700;
+            color: #22c55e;
+            margin-bottom: 20px;
+        }
+
+        .price-tag span {
+            font-size: 16px;
+            color: #94a3b8;
+            text-decoration: line-through;
+            margin-left: 10px;
+        }
+
+        .description {
+            font-size: 14px;
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .timer-box {
+            background: #0f172a;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 25px;
+            border: 1px solid #334155;
+        }
+
+        .timer-box p {
+            font-size: 12px;
+            color: #cbd5e1;
+            margin-bottom: 4px;
+        }
+
+        #countdown {
+            font-size: 18px;
+            font-weight: 700;
+            color: #f59e0b;
+        }
+
+        .buy-btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .buy-btn:hover {
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="product-container">
+        <!-- Live Animated Watch Section -->
+        <div class="product-image">
+            <div class="watch-mockup">
+                <div class="watch-center"></div>
+                <div class="hand hour-hand" id="hourHand"></div>
+                <div class="hand minute-hand" id="minuteHand"></div>
+                <div class="hand second-hand" id="secondHand"></div>
+            </div>
+        </div>
+
+        <!-- Product Details Section -->
+        <div class="product-details">
+            <div>
+                <div class="brand-title">Dragun Official</div>
+                <h1 class="product-title">Dragun Chrono Master</h1>
+                <div class="price-tag">$199 USD <span>$350 USD</span></div>
+                <p class="description">
+                    Experience precision timekeeping with the Dragun Chrono Master. Built with aerospace-grade steel, scratch-resistant sapphire glass, and a live smooth-sweep movement mechanism.
+                </p>
+
+                <!-- Timer -->
+                <div class="timer-box">
+                    <p>Limited Time Offer Ends In:</p>
+                    <div id="countdown">05:12:45</div>
+                </div>
+            </div>
+
+            <!-- Buy Button -->
+            <a href="#" class="buy-btn" onclick="alert('Redirecting to checkout for $199 USD...')">Buy Now - $199</a>
+        </div>
+    </div>
+
+    <script>
+        // Live Watch Hands Movement Script
+        function updateClock() {
+            const now = new Date();
+            const seconds = now.getSeconds();
+            const minutes = now.getMinutes();
+            const hours = now.getHours();
+
+            const secondDegrees = (seconds / 60) * 360;
+            const minuteDegrees = ((minutes + seconds / 60) / 60) * 360;
+            const hourDegrees = ((hours % 12 + minutes / 60) / 12) * 360;
+
+            document.getElementById('secondHand').style.transform = `translateX(-50%) rotate(${secondDegrees}deg)`;
+            document.getElementById('minuteHand').style.transform = `translateX(-50%) rotate(${minuteDegrees}deg)`;
+            document.getElementById('hourHand').style.transform = `translateX(-50%) rotate(${hourDegrees}deg)`;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Countdown Timer Script
+        let timeRemaining = 5 * 3600 + 12 * 60 + 45; // 5 hours 12 mins 45 secs
+        const countdownElement = document.getElementById('countdown');
+
+        setInterval(() => {
+            if (timeRemaining > 0) {
+                timeRemaining--;
+                let hrs = Math.floor(timeRemaining / 3600);
+                let mins = Math.floor((timeRemaining % 3600) / 60);
+                let secs = timeRemaining % 60;
+
+                countdownElement.textContent = 
+                    `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }
+        }, 1000);
+    </script>
+
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="hi">
 <head>
