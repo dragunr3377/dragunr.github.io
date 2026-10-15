@@ -1137,4 +1137,345 @@ Address: [अपना व्यावसायिक पता यहाँ ज
 git branch -M main
 git push -u origin maingit remote add origin https://github.com/dragunr3377/dragun.github.io.git
 git branch -M main
-git push -u origin main# dragunr.github.io
+git push -u origin main# dragunr.github.io<!DOCTYPE html>
+<html lang="hi">
+<head>
+    
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 Car Typing Race</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #1a1a2e;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        h1 {
+            color: #e94560;
+            margin-bottom: 10px;
+        }
+
+        /* Race Track Styling */
+        .track-container {
+            width: 100%;
+            max-width: 800px;
+            background: #16213e;
+            border: 3px solid #0f3460;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .lane {
+            position: relative;
+            height: 50px;
+            background-color: #333;
+            margin: 8px 0;
+            border-top: 2px dashed #666;
+            border-bottom: 2px dashed #666;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .finish-line {
+            position: absolute;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            width: 10px;
+            background: repeating-linear-gradient(
+                0deg,
+                #fff,
+                #fff 10px,
+                #000 10px,
+                #000 20px
+            );
+            z-index: 2;
+        }
+
+        .car {
+            position: absolute;
+            left: 0;
+            font-size: 28px;
+            transition: left 0.2s linear;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+        }
+
+        .car-label {
+            font-size: 12px;
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            padding: 2px 5px;
+            border-radius: 3px;
+            margin-right: 5px;
+        }
+
+        /* Typing Box Styling */
+        .game-panel {
+            width: 100%;
+            max-width: 800px;
+            background: #0f3460;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .stat-box {
+            background: #16213e;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: 1px solid #e94560;
+        }
+
+        .text-display {
+            background: #1a1a2e;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 18px;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            min-height: 60px;
+            text-align: left;
+            line-height: 1.5;
+        }
+
+        .correct { color: #4ecca3; font-weight: bold; }
+        .incorrect { color: #e94560; background: rgba(233, 69, 96, 0.2); }
+        .current { border-bottom: 2px solid #fff; }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #e94560;
+            border-radius: 5px;
+            outline: none;
+            background: #1a1a2e;
+            color: #fff;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #e94560;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff6b81;
+        }
+
+        button:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🏎️ 5-Car Typing Racing Game</h1>
+
+    <!-- Race Track -->
+    <div class="track-container">
+        <div class="lane">
+            <span class="finish-line"></span>
+            <div class="car" id="car1"><span class="car-label">Aap (P1)</span>🏎️</div>
+        </div>
+        <div class="lane">
+            <span class="finish-line"></span>
+            <div class="car" id="car2"><span class="car-label">Bot 1</span>🏎️</div>
+        </div>
+        <div class="lane">
+            <span class="finish-line"></span>
+            <div class="car" id="car3"><span class="car-label">Bot 2</span>🏎️</div>
+        </div>
+        <div class="lane">
+            <span class="finish-line"></span>
+            <div class="car" id="car4"><span class="car-label">Bot 3</span>🏎️</div>
+        </div>
+        <div class="lane">
+            <span class="finish-line"></span>
+            <div class="car" id="car5"><span class="car-label">Bot 4</span>🏎️</div>
+        </div>
+    </div>
+
+    <!-- Controls and Display -->
+    <div class="game-panel">
+        <div class="stats">
+            <div class="stat-box">Speed: <span id="speed">0</span> km/h</div>
+            <div class="stat-box">WPM: <span id="wpm">0</span></div>
+            <div class="stat-box">Progress: <span id="progress">0%</span></div>
+        </div>
+
+        <div class="text-display" id="textDisplay">Start button par click karein game shuru karne ke liye!</div>
+
+        <input type="text" id="typeInput" placeholder="Yahan type karna shuru karein..." disabled autocomplete="off">
+        <br>
+        <button id="startBtn">Race Start Karein!</button>
+    </div>
+
+    <script>
+        const sampleTexts = [
+            "quick brown fox jumps over the lazy dog and runs as fast as possible to win the ultimate racing championship today",
+            "speed is the key to winning this race keep typing as fast and accurately as you can to beat all other cars",
+            "practice makes a person perfect typing every day will increase your speed and accuracy on the keyboard"
+        ];
+
+        let targetText = "";
+        let startTime = null;
+        let raceInterval = null;
+        let isGameRunning = false;
+
+        // Elements
+        const startBtn = document.getElementById("startBtn");
+        const typeInput = document.getElementById("typeInput");
+        const textDisplay = document.getElementById("textDisplay");
+        const speedDisplay = document.getElementById("speed");
+        const wpmDisplay = document.getElementById("wpm");
+        const progressDisplay = document.getElementById("progress");
+
+        const cars = [
+            { id: "car1", pos: 0, isPlayer: true },
+            { id: "car2", pos: 0, speed: 0.3 },
+            { id: "car3", pos: 0, speed: 0.4 },
+            { id: "car4", pos: 0, speed: 0.25 },
+            { id: "car5", pos: 0, speed: 0.35 }
+        ];
+
+        startBtn.addEventListener("click", startGame);
+
+        function startGame() {
+            // Reset state
+            isGameRunning = true;
+            typeInput.disabled = false;
+            typeInput.value = "";
+            typeInput.focus();
+            startBtn.disabled = true;
+
+            // Pick random text
+            targetText = sampleTexts[Math.floor(Math.random() * sampleTexts.length)];
+            renderText("");
+
+            // Reset cars position
+            cars.forEach(car => {
+                car.pos = 0;
+                document.getElementById(car.id).style.left = "0%";
+            });
+
+            startTime = new Date().getTime();
+
+            // AI cars movement loop
+            if (raceInterval) clearInterval(raceInterval);
+            raceInterval = setInterval(updateRace, 100);
+        }
+
+        function renderText(typed) {
+            let html = "";
+            for (let i = 0; i < targetText.length; i++) {
+                if (i < typed.length) {
+                    if (typed[i] === targetText[i]) {
+                        html += `<span class="correct">${targetText[i]}</span>`;
+                    } else {
+                        html += `<span class="incorrect">${targetText[i]}</span>`;
+                    }
+                } else if (i === typed.length) {
+                    html += `<span class="current">${targetText[i]}</span>`;
+                } else {
+                    html += targetText[i];
+                }
+            }
+            textDisplay.innerHTML = html;
+        }
+
+        typeInput.addEventListener("input", () => {
+            if (!isGameRunning) return;
+
+            const typedVal = typeInput.value;
+            renderText(typedVal);
+
+            // Calculate correct characters typed
+            let correctChars = 0;
+            for (let i = 0; i < typedVal.length; i++) {
+                if (typedVal[i] === targetText[i]) {
+                    correctChars++;
+                } else {
+                    break;
+                }
+            }
+
+            // Player progress percentage
+            let progressPercent = (correctChars / targetText.length) * 100;
+            cars[0].pos = Math.min(progressPercent, 90); // max 90% before finish line
+            document.getElementById(cars[0].id).style.left = cars[0].pos + "%";
+
+            // Live WPM and Speed Calculation
+            let timeElapsed = (new Date().getTime() - startTime) / 60000; // in minutes
+            let wordsTyped = correctChars / 5;
+            let wpm = timeElapsed > 0 ? Math.round(wordsTyped / timeElapsed) : 0;
+            
+            wpmDisplay.innerText = wpm;
+            speedDisplay.innerText = Math.round(wpm * 2.5); // Convert WPM to km/h speed feel
+            progressDisplay.innerText = Math.round(progressPercent) + "%";
+
+            // Check Win Condition for Player
+            if (correctChars === targetText.length) {
+                endGame("🎉 Shabaash! Aap Race Jeet Gaye! 🏆");
+            }
+        });
+
+        function updateRace() {
+            if (!isGameRunning) return;
+
+            // Move Bot Cars
+            for (let i = 1; i < cars.length; i++) {
+                // Random variation for AI speed
+                let randomFactor = Math.random() * 0.4;
+                cars[i].pos += (cars[i].speed + randomFactor);
+                
+                if (cars[i].pos >= 90) {
+                    cars[i].pos = 90;
+                    document.getElementById(cars[i].id).style.left = "90%";
+                    endGame(`🏎️ Bot ${i} Race Jeet Gaya! Aap Haar Gaye. Try Again!`);
+                    return;
+                }
+                document.getElementById(cars[i].id).style.left = cars[i].pos + "%";
+            }
+        }
+
+        function endGame(message) {
+            isGameRunning = false;
+            clearInterval(raceInterval);
+            typeInput.disabled = true;
+            startBtn.disabled = false;
+            textDisplay.innerHTML = `<h3>${message}</h3>`;
+        }
+    </script>
+</body>
+</html>
