@@ -1,5 +1,7 @@
 🛍️ DRAGUN R
 
+Welcome to DRAGUN!
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
