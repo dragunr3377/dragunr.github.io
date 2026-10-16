@@ -5,6 +5,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burj Khalifa Live Flag Animation - Dragun</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #050b14;
+            font-family: Arial, sans-serif;
+        }
+
+        .scene {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(to bottom, #020408, #0c1b33, #1e3a60);
+        }
+
+        /* Burj Khalifa Building Structure */
+        .burj-khalifa {
+            position: absolute;
+            bottom: 0;
+            left: 30%;
+            width: 250px;
+            height: 90vh;
+            background: linear-gradient(90deg, #111d2d, #1f334d, #0d1622);
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Building Lights / Facade Text Effect */
+        .building-text {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-90deg);
+            color: #ff9900;
+            font-size: 36px;
+            font-weight: bold;
+            letter-spacing: 5px;
+            text-shadow: 0 0 15px #ff7700, 0 0 30px #ff5500;
+        }
+
+        /* Spire / Top of Burj Khalifa */
+        .spire {
+            position: absolute;
+            bottom: 90vh;
+            left: calc(30% + 115px);
+            width: 20px;
+            height: 100px;
+            background: #silver;
+            background: linear-gradient(to top, #333, #fff);
+        }
+
+        /* Boy standing at the top */
+        .boy {
+            position: absolute;
+            bottom: calc(90vh + 40px);
+            left: calc(30% + 118px);
+            width: 15px;
+            height: 40px;
+            background: #000;
+            border-radius: 5px;
+        }
+
+        /* Flag Pole */
+        .flag-pole {
+            position: absolute;
+            bottom: calc(90vh + 40px);
+            left: calc(30% + 128px);
+            width: 4px;
+            height: 120px;
+            background: #ddd;
+        }
+
+        /* Live Waving Flag */
+        .flag {
+            position: absolute;
+            bottom: calc(90vh + 110px);
+            left: calc(30% + 132px);
+            width: 140px;
+            height: 90px;
+            background: #0b131f;
+            border: 2px solid #ff7700;
+            border-radius: 4px;
+            transform-origin: left center;
+            animation: wave 1.5s ease-in-out infinite alternate;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            box-shadow: 0 0 10px rgba(255, 119, 0, 0.5);
+        }
+
+        .flag-content {
+            color: #fff;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .flag-content span {
+            color: #ff7700;
+            display: block;
+            font-size: 10px;
+        }
+
+        @keyframes wave {
+            0% {
+                transform: rotateX(0deg) rotateY(0deg) skewY(0deg);
+            }
+            100% {
+                transform: rotateX(15deg) rotateY(-25deg) skewY(-5deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="scene">
+        <!-- Burj Khalifa Building -->
+        <div class="burj-khalifa">
+            <div class="building-text">DRAGUN</div>
+        </div>
+        
+        <!-- Spire -->
+        <div class="spire"></div>
+
+        <!-- Boy -->
+        <div class="boy"></div>
+
+        <!-- Flag Pole -->
+        <div class="flag-pole"></div>
+
+        <!-- Live Waving Flag with Dragun Branding -->
+        <div class="flag">
+            <div class="flag-content">
+                🐉 DRAGUN
+                <span>COMPANY</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dragun Luxury Watch - Exclusive Offer</title>
     <style>
         * {
